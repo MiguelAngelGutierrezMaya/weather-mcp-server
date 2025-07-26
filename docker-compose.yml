@@ -1,0 +1,38 @@
+services:
+  weather-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - API_KEYS=${API_KEYS}
+      - USER_AGENT=${USER_AGENT}
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    restart: always
+    networks:
+      - dokploy-network
+      - containers
+    volumes:
+      - weather-mcp-server:/app/logs
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    read_only: true
+    tmpfs:
+      - /tmp
+
+networks:
+  containers:
+    external: true
+  dokploy-network:
+    external: true
+
+volumes:
+  weather-mcp-server:
