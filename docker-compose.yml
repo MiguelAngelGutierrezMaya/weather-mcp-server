@@ -8,8 +8,8 @@ services:
     environment:
       - API_KEYS=${API_KEYS}
       - USER_AGENT=${USER_AGENT}
-      - ENVIRONMENT=production
-      - LOG_LEVEL=INFO
+      - ENVIRONMENT=${ENVIRONMENT}
+      - LOG_LEVEL=${LOG_LEVEL}
     restart: always
     networks:
       - dokploy-network
