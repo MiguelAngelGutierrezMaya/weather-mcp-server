@@ -16,17 +16,6 @@ services:
       - containers
     volumes:
       - weather-mcp-server:/app/logs
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.5'
-          memory: 256M
-    read_only: true
-    tmpfs:
-      - /tmp
 
 networks:
   containers:
